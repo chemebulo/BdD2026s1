@@ -36,14 +36,18 @@ CREATE TABLE encuentra (
 
 -- SE INSERTAN DATOS A LAS TABLAS CREADAS:
 
-INSERT INTO manada VALUES ('Patagonia', 'Sur', -3.20, 15);
-INSERT INTO manada VALUES ('Cuyo', 'Norte', 17.50, 10);
+INSERT INTO manada (region, origen, temperatura, poblacion) 
+VALUES ('Patagonia', 'Sur', -3.20, 15),
+	   ('Cuyo', 'Norte', 17.50, 10);
 
-INSERT INTO lobo VALUES ('Kimi', 45, 7, 'Patagonia', 'Sur');
-INSERT INTO lobo VALUES ('Balta', 39, 5, 'Cuyo', 'Norte');
+INSERT INTO lobo (nombre, peso, edad, region, origen)
+VALUES ('Kimi', 45, 7, 'Patagonia', 'Sur'), 
+	   ('Balta', 39, 5, 'Cuyo', 'Norte');
 
-INSERT INTO rastreador VALUES (101, 87.20);
-INSERT INTO rastreador VALUES (102, 56.70);
+INSERT INTO rastreador (id, porcentaje_bateria)
+VALUES (101, 87.20), 
+ 	   (102, 56.70);
 
-INSERT INTO encuentra VALUES ('Kimi', 'Patagonia', 'Sur', 101, '2025-10-20');
-INSERT INTO encuentra VALUES ('Balta', 'Cuyo', 'Norte', 102, '2025-10-19');
+INSERT INTO encuentra (nombre, region, origen, id, fecha)
+VALUES ('Kimi', 'Patagonia', 'Sur', 101, '2025-10-20'), 
+	   ('Balta', 'Cuyo', 'Norte', 102, '2025-10-19');
