@@ -45,7 +45,7 @@ CREATE TABLE plato (
 	FOREIGN KEY (numero) REFERENCES programa(numero)
 );
 
--- SE INSERTAN DATOS A LAS TABLAS CREADAS:
+-- SE INSERTAN DATOS EN LAS TABLAS CREADAS:
 
 INSERT INTO restaurante (razon_social, fundacion, cant_estrellas) 
 VALUES ('Parrilla Don Julio', '2004-01-22 08:30:00', 4),

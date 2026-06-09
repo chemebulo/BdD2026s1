@@ -34,7 +34,7 @@ CREATE TABLE encuentra (
 	FOREIGN KEY (id) REFERENCES rastreador(id)
 );
 
--- SE INSERTAN DATOS A LAS TABLAS CREADAS:
+-- SE INSERTAN DATOS EN LAS TABLAS CREADAS:
 
 INSERT INTO manada (region, origen, temperatura, poblacion) 
 VALUES ('Patagonia', 'Sur', -3.20, 15),
