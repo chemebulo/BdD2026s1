@@ -32,7 +32,7 @@ CREATE TABLE prestamo (
 	cod_socio INT,
 	fecha_prestamo TIMESTAMP,
 	fecha_devolucion TIMESTAMP,
-	PRIMARY KEY(cod_ejemplar,cod_socio),
+	PRIMARY KEY(cod_ejemplar, cod_socio),
 	CONSTRAINT fk_cod_ejemplar FOREIGN KEY (cod_ejemplar) REFERENCES ejemplar(cod_ejemplar),
 	CONSTRAINT fk_cod_socio FOREIGN KEY (cod_socio) REFERENCES socio(cod_socio)
 );
@@ -74,28 +74,84 @@ VALUES (503, 78, '2012-05-03 00:00:00', '2012/05/08'),
 
 -- DDL/DML-A:
 
-SELECT * FROM socio; 
+	-- Hecho.
+
 
 -- DDL/DML-B:
 
-ALTER TABLE ejemplar ADD COLUMN año_edicion INT;
+ALTER TABLE ejemplar 
+ADD COLUMN año_edicion INT;
+
 
 -- DDL/DML-C:
 
-ALTER TABLE socio ADD COLUMN domicilio VARCHAR(150);
+ALTER TABLE socio 
+ADD COLUMN domicilio VARCHAR(150);
+
 
 -- DDL/DML-D:
 
-UPDATE socio
+UPDATE socio 
 SET monto_cuota = monto_cuota + 10
+
 
 -- DDL/DML-E:
 
+UPDATE socio
+SET pais = 'Mexico'
+WHERE nombre_y_apellido = 'Amy Farrah Fowler';
+
+ALTER TABLE nacionalidad
+ALTER COLUMN nacionalidad
+TYPE VARCHAR(25);
+
+INSERT INTO nacionalidad (nombre_pais, nacionalidad)
+VALUES ('Colombia', 'Colombiana');
+
+UPDATE socio
+SET pais = 'Colombia'
+WHERE nombre_y_apellido = 'Howard Wolowitz';
+
+
+-- DDL/DML-F:
+
+DELETE FROM nacionalidad
+WHERE nombre_pais = 'Peru';
+
+
+-- DDL/DML-G:
+
+DELETE FROM prestamo
+WHERE cod_ejemplar IN (SELECT cod_ejemplar FROM ejemplar WHERE edicion = 3);
+
+DELETE FROM ejemplar
+WHERE edicion = 3;
+
+
+-- DML-A.I:
+
+SELECT cod_socio FROM prestamo -- Representa la tabla donde únicamente está la columna cod_socio de la tabla prestamo.   
+
+SELECT cod_ejemplar FROM prestamo -- Representa la tabla donde únicamente está la columna cod_ejemplar de la tabla prestamo.
+
+SELECT cod_ejemplar, cod_socio FROM prestamo -- Representa la tabla donde únicamente están las coloumnas cod_ejemplar y cod_socio de la tabla prestamo.
+
+
+-- DML-A.II:
+
+	-- Sí, es el mismo porque el operador SELECT de SQL representa el operador proyección de Álgebra Relacional.
+
+
+-- DML-A.III:
 
 
 
+-- DML-A.IV:
 
 
+-- DML-B.I:
+
+-- DML-C.I:
 
 
 
