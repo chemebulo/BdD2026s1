@@ -139,7 +139,7 @@ SELECT cod_ejemplar, cod_socio FROM prestamo -- Representa el cod_ejemplar que f
 
 -- DML-A.II:
 
-	-- Sí, es el mismo porque el operador SELECT de SQL representa el operador proyección de Álgebra Relacional.
+	-- No, a pesar que "hacen lo mismo", el resultado de utilizar SELECT admite tuplas repetidas, mientras que la proyección de Álgebra Relacional no.
 
 
 -- DML-A.III:
@@ -167,43 +167,61 @@ FROM socio
 
 -- DML-C.I:
 
-SELECT cod_socio FROM prestamo WHERE fecha_prestamo > '31/01/2012' -- Representa el cod_socio de quienes hayan realizado un prestamo después del 31 de Enero del 2012.
+SELECT cod_socio FROM prestamo WHERE fecha_prestamo > '2012/01/31' -- Representa el cod_socio de quienes hayan realizado un prestamo después del 31 de Enero del 2012.
 
-SELECT cod_ejemplar FROM prestamo WHERE fecha_prestamo > '31/01/2012' -- Representa el cod_ejemplar que fue prestado después del 31 de Enero del 2012.
+SELECT cod_ejemplar FROM prestamo WHERE fecha_prestamo > '2012/01/31' -- Representa el cod_ejemplar que fue prestado después del 31 de Enero del 2012.
 
 
 -- DML-C.II:
 
+	-- El esquema sería A(R1), donde cada tupla tiene que cumplir que rn < r2.
+
+	-- El esquema sería A(R1), donde cada tupla tiene que cumplir que rn < r2.
 
 
 -- DML-C.III:
 
+SELECT isbn_libro
+FROM ejemplar
+WHERE edicion = 2 OR edicion = 3;
 
 
 -- DML-D.I:
 
+SELECT * FROM prestamo NATURAL JOIN ejemplar -- Representa la tabla de la combinación de cada préstamo con cada ejemplar prestado. 
+
+SELECT * FROM prestamo NATURAL JOIN socio -- Representa la tabla de la combinación de cada préstamo con cada socio que lo realizó.
+
+	-- No, porque no tienen ningún atributo en común para poder asociar.
 
 
 -- DML-D.II:
 
-
+	-- Las condiciones necesarias entre R1 y R2 es que tengan al menos un atributo en común y que dichos atributos tengan el mismo tipo de dato.
+	-- El esquema resultante es: A(R1) U A(R2).
 
 
 -- DML-D.III:
 
-
+	-- Las condiciones necesarias entre R1 y R2 es que tengan al menos un atributo en común y que dichos atributos tengan el mismo tipo de dato.
+	-- El esquema resultante es: A(R1) U A(R2), donde cada tupla tiene que cumplir con B.
 
 
 -- DML-D.IV:
 
+-- El primero no se puede realizar fácilmente con JOIN NATURAL.
 
+SELECT cod_socio, COUNT (cod_ejemplar) AS cantidad_prestamos
+FROM socio NATURAL JOIN prestamo
+WHERE fecha_prestamo BETWEEN '2013/01/01' AND '2013/03/31'
+GROUP BY cod_socio;
 
 
 -- DML-E.I:
 
-SELECT * FROM prestamo JOIN socio --
+SELECT * FROM prestamo JOIN socio
 
-SELECT * FROM ejemplar JOIN socio --
+SELECT * FROM ejemplar JOIN socio
 
 
 -- DML-E.II:
