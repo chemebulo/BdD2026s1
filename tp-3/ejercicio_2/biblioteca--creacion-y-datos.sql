@@ -130,11 +130,11 @@ WHERE edicion = 3;
 
 -- DML-A.I:
 
-SELECT cod_socio FROM prestamo -- Representa la tabla donde únicamente está la columna cod_socio de la tabla prestamo.   
+SELECT cod_socio FROM prestamo -- Representa el cod_socio de todos los que realizaron un préstamo.   
 
-SELECT cod_ejemplar FROM prestamo -- Representa la tabla donde únicamente está la columna cod_ejemplar de la tabla prestamo.
+SELECT cod_ejemplar FROM prestamo -- Representa el cod_ejemplar que fueron entregados en un préstamo.
 
-SELECT cod_ejemplar, cod_socio FROM prestamo -- Representa la tabla donde únicamente están las coloumnas cod_ejemplar y cod_socio de la tabla prestamo.
+SELECT cod_ejemplar, cod_socio FROM prestamo -- Representa el cod_ejemplar que fue prestado junto al cod_socio de quien realizo el préstamo.
 
 
 -- DML-A.II:
@@ -144,20 +144,77 @@ SELECT cod_ejemplar, cod_socio FROM prestamo -- Representa la tabla donde única
 
 -- DML-A.III:
 
+	-- El esquema sería | r1 |.
+
+	-- El esquema sería | r1 | r2 |.
 
 
 -- DML-A.IV:
 
+SELECT nombre_y_apellido
+FROM socio;
+
 
 -- DML-B.I:
 
+SELECT cod_ejemplar, cod_socio, EXTRACT(DAY FROM AGE(fecha_devolucion, fecha_prestamo)) AS dias_duracion
+FROM prestamo
+WHERE fecha_devolucion IS NOT NULL;
+
+SELECT cod_socio, nombre_y_apellido, ((12 * monto_cuota) + matricula) AS pago_anual_socio
+FROM socio
+
+
 -- DML-C.I:
 
+SELECT cod_socio FROM prestamo WHERE fecha_prestamo > '31/01/2012' -- Representa el cod_socio de quienes hayan realizado un prestamo después del 31 de Enero del 2012.
+
+SELECT cod_ejemplar FROM prestamo WHERE fecha_prestamo > '31/01/2012' -- Representa el cod_ejemplar que fue prestado después del 31 de Enero del 2012.
+
+
+-- DML-C.II:
+
+
+
+-- DML-C.III:
+
+
+
+-- DML-D.I:
+
+
+
+-- DML-D.II:
 
 
 
 
+-- DML-D.III:
 
-	
 
-	
+
+
+-- DML-D.IV:
+
+
+
+
+-- DML-E.I:
+
+SELECT * FROM prestamo JOIN socio --
+
+SELECT * FROM ejemplar JOIN socio --
+
+
+-- DML-E.II:
+
+SELECT * FROM R1 JOIN R2 -- 
+
+SELECT * FROM R1 JOIN R2 where B --
+
+
+-- DML-F.I:
+
+SELECT * FROM prestamo JOIN socio ON fecha_ingreso < fecha_prestamo --
+
+SELECT * FROM ejemplar JOIN socio ON fecha_ingreso < '01/02/2008' --
