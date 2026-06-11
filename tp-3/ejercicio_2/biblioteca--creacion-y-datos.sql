@@ -219,20 +219,20 @@ GROUP BY cod_socio;
 
 -- DML-E.I:
 
-SELECT * FROM prestamo JOIN socio
+SELECT * FROM prestamo JOIN socio -- Representa todas las combinaciones posibles entre las tuplas de socio y préstamo.
 
-SELECT * FROM ejemplar JOIN socio
+SELECT * FROM ejemplar JOIN socio -- Representa todas las combinaciones posibles entre las tuplas de ejemplar y socio.
 
 
 -- DML-E.II:
 
-SELECT * FROM R1 JOIN R2 -- 
+SELECT * FROM R1 JOIN R2 -- No necesitan cumplir ninguna condición en particular. El esquema es A(R1) + A(R2).
 
-SELECT * FROM R1 JOIN R2 where B --
+SELECT * FROM R1 JOIN R2 WHERE B -- No necesitan cumplir ninguna condición en particular, salvo que la condición B debe existir en R1 o R2. El esquema es A(R1) + A(R2).
 
 
 -- DML-F.I:
 
-SELECT * FROM prestamo JOIN socio ON fecha_ingreso < fecha_prestamo --
+SELECT * FROM prestamo JOIN socio ON fecha_ingreso < fecha_prestamo -- Representa a las asociaciones de prestamo y ejemplar, donde la fecha de ingreso del socio es menor a la fecha de préstamo realizado por él. 
 
-SELECT * FROM ejemplar JOIN socio ON fecha_ingreso < '01/02/2008' --
+SELECT * FROM ejemplar JOIN socio ON fecha_ingreso < '01/02/2008' -- Representa a las asociaciones de ejemplar y socio, donde la fecha de ingreso del socio es menor al 1 de Febrero del 2008.
