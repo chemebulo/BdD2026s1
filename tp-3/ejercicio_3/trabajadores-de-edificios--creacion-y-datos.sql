@@ -67,3 +67,162 @@ VALUES (1235, 312, '2014-10-10 00:00:00', 5),
 	   (3231, 312, '2014-10-24 00:00:00', 20);
 
 -- EJERCICIOS RESUELTOS:
+
+-- 1.A:
+
+ALTER TABLE trabajador
+ADD COLUMN edad INT;
+
+ALTER TABLE trabajador
+ADD CONSTRAINT edad_chk CHECK (edad > 0);
+
+
+-- 1.B:
+
+ALTER TABLE edificio
+ADD COLUMN ciudad VARCHAR(25);
+
+
+-- 1.C:
+
+UPDATE asignacion
+SET num_dias = num_dias + 4;
+
+
+-- 1.D:
+
+UPDATE edificio
+SET nivel_calidad = 5
+WHERE tipo = 'oficina' AND nivel_calidad = 4;
+
+UPDATE edificio
+SET categoria = 4
+WHERE tipo = 'oficina' AND categoria = 1;
+
+
+-- 1.E:
+
+DELETE FROM asignacion
+WHERE legajo IN (SELECT legajo
+				 FROM trabajador
+				 WHERE oficio = 'plomero')
+
+DELETE FROM trabajador
+WHERE oficio = 'plomero';
+
+
+-- 1.F:
+
+DELETE FROM asignacion
+WHERE id_e IN (SELECT id_e
+			   FROM edificio
+			   WHERE tipo = 'residencia')
+
+DELETE FROM edificio
+WHERE tipo = 'residencia';
+
+
+-- 2.A:
+
+SELECT nombre
+FROM trabajador
+WHERE tarifa BETWEEN 10 AND 12;
+
+
+-- 2.B:
+
+SELECT oficio
+FROM asignacion AS a
+JOIN trabajador AS t ON t.legajo = a.legajo  
+WHERE id_e = 435;
+
+
+-- 2.C:
+
+SELECT t.nombre, ts.nombre AS nombre_supervisor
+FROM trabajador AS t
+JOIN trabajador AS ts ON t.legajo_supv = ts.legajo
+
+
+-- 2.D:
+
+SELECT DISTINCT nombre
+FROM asignacion AS a
+JOIN trabajador AS t ON t.legajo = a.legajo
+JOIN edificio AS e ON e.id_e = a.id_e
+WHERE e.tipo = 'oficina';
+
+
+-- 2.E:
+
+SELECT DISTINCT t.nombre
+FROM trabajador AS t
+JOIN trabajador AS ts ON t.legajo_supv = ts.legajo
+WHERE t.tarifa > ts.tarifa;
+
+
+-- 2.F:
+
+
+
+
+
+
+
+-- 2.G:
+
+
+
+
+
+
+-- 2.H:
+
+
+
+
+
+
+-- 2.I:
+
+
+
+
+-- 2.J:
+
+
+
+
+-- 2.K:
+
+
+
+
+
+
+
+-- 2.L:
+
+
+
+
+
+
+-- 2.M:
+
+
+
+
+
+
+-- 2.N:
+
+
+
+
+
+-- 2.O:
+
+
+
+
